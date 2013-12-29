@@ -4,8 +4,8 @@
    stop program  = "/etc/init.d/apache2 stop"
    if 4 restarts within 20 cycles then timeout
    if failed host localhost port 80 with protocol http and request "/" with timeout 25 seconds for 4 times within 5 cycles then restart
-   depend apache_bin
-   depend apache_rc
+   #depend apache_bin
+   #depend apache_rc
 
     if cpu > 60% for 2 cycles then alert
     if cpu > 80% for 5 cycles then restart

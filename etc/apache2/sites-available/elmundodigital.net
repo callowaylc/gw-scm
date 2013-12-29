@@ -1,0 +1,24 @@
+<VirtualHost *:8080>
+	ServerAdmin  webmaster@localhost
+	ServerName   localhost
+	ServerAlias  localhost elmundodigital.net *.elmundodigital.net
+
+	DocumentRoot /var/www/elmundodigital
+	<Directory /var/www/elmundodigital>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+
+	ErrorLog ${APACHE_LOG_DIR}/elmundodigital.error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/elmundodigital.access.log combined
+
+
+</VirtualHost>

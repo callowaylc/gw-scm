@@ -19,6 +19,10 @@
 # set mail-format { from: monit@foo.bar }
 #
 #
+
+# set external maiserver
+set mailserver smtp.gmail.com port 587 username "726media.alert@gmail.com" password "fe5180zz" using tlsv1 with timeout 30 seconds
+
 ## You can set alert recipients whom will receive alerts if/when a 
 ## service defined in this file has errors. Alerts may be restricted on 
 ## events by using a filter as in the second example below. 
@@ -28,8 +32,6 @@ set alert gwambia@yahoo.com
 
 
 ## Do not alert when Monit start,stop or perform a user initiated action
-set alert manager@foo.bar not on { instance, action }
+#set alert manager@foo.bar not on { instance, action }
 
-# set external maiserver
-set mailserver smtp.gmail.com port 587 username "726media.alert@gmail.com" password "fe5180zz" using tlsv1 with timeout 30 seconds
  
