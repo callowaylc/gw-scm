@@ -24,7 +24,6 @@ backend default {
 sub vcl_recv {
 
 
-
   # TODO this is temporary; need to fix issue with cache on different remote hosts
   #set req.http.host = "localhost";
   set req.http.X-TEST-URL = req.http.host + req.url;
