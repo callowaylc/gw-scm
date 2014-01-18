@@ -23,7 +23,7 @@ backend default {
 #  3) Extract cookies etc into X-Varnish-Client-[x] headers that can be "varied" on by the server to create different versions of the cache
 sub vcl_recv {
 
-
+  return(pass);
   # TODO this is temporary; need to fix issue with cache on different remote hosts
   #set req.http.host = "localhost";
   set req.http.X-TEST-URL = req.http.host + req.url;
