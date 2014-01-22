@@ -4,7 +4,7 @@ server {
         root /var/www/elmundodigital;
         index index.php index.html index.htm;
 
-        server_name localhost elmundodigital.net;
+        server_name localhost elmundodigital.net elmundodigital.*;
 
         location / {
                 try_files $uri $uri/ /index.php?q=$uri&$args;
