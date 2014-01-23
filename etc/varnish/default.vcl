@@ -36,7 +36,8 @@ sub vcl_recv {
 
   # POST/DELETE/PUT requets should be passed directly to 
   # backend
-  if (req.url ~ "wp-admin" ||
+  if (req.url ~ "wp-admin"  ||
+      req.http.host ~ "api" ||
       req.request == "POST") {
     
     return(pass);
