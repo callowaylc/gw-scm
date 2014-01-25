@@ -8,8 +8,8 @@
 #
 ## A sample /etc/unicorn/my_app.conf
 ## 
-## RAILS_ENV=production
-## RAILS_ROOT=/var/apps/www/my_app/current
+RAILS_ENV=development
+RAILS_ROOT=/var/www/api
 #
 # This configures a unicorn master for your app at /var/apps/www/my_app/current running in
 # production mode. It will read config/unicorn.rb for further set up. 
@@ -90,3 +90,5 @@ start_stop () {
  
 ARGS="$1 $2"
 start_stop $ARGS
+
+exit 0
