@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'gw-scm'
-set :repo_url, 'git@example.com:callowaylc/gw-scm.git'
+set :repo_url, 'git@github.com:callowaylc/gw-scm.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
