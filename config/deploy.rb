@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'source code management'
+set :application, 'gw-scm'
 set :repo_url, 'git@example.com:callowaylc/gw-scm.git'
 
 # Default branch is :master
@@ -39,9 +39,13 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
+    on roles(:web), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+
+      #
+      execute 'sudo service nginx restart'
+      execute 'sudo service varnish restart'
     end
   end
 
