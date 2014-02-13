@@ -6,6 +6,10 @@ server {
 
         server_name localhost www.elmundodigital.net elmundodigital.net elmundodigital.* *.amazonaws.com;
 
+       location ^~ /wp-(content|includes)/(.+)$ {
+                return 301 http://elmundodigital.net.s3.amazonaws.com/wp-$1/$2;
+        }
+
         location / {
                 try_files $uri $uri/ /index.php?q=$uri&$args;
         }
