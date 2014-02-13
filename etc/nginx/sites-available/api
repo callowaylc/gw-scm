@@ -5,7 +5,7 @@ upstream unicorn {
 server {
   listen 8080 default_server deferred;
   
-  server_name api.*;
+  server_name api.elmundodigital.net api.showbizdaily.net;
   root /var/www/api/public;
 
   location ^~ /assets/ {
