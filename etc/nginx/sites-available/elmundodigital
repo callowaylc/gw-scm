@@ -4,7 +4,7 @@ server {
         root /var/www/elmundodigital;
         index index.php index.html index.htm;
 
-        server_name localhost www.elmundodigital.net elmundodigital.net elmundodigital.* *.amazonaws.com;
+        server_name elmundodigital.localhost www.elmundodigital.net elmundodigital.net elmundodigital.* *.amazonaws.com;
 
         location ~ /wp-(content|includes)/(.+)$ {
                 return 301 http://elmundodigital.net.s3.amazonaws.com/wp-$1/$2;

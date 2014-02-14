@@ -4,7 +4,7 @@ server {
         root /var/www/showbizdaily;
         index index.php;
 
-        server_name showbizdaily.net showbizdaily.* *.showbizdaily.net;
+        server_name showbizdaily.localhost showbizdaily.net showbizdaily.* *.showbizdaily.net;
 
         location / {
                 try_files $uri $uri/ /index.php?q=$uri&$args;
