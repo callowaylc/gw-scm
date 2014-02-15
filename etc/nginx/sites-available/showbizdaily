@@ -6,6 +6,10 @@ server {
 
         server_name showbizdaily.localhost showbizdaily.net showbizdaily.* *.showbizdaily.net;
 
+        location ~ /wp-(content|includes)/(.+)$ {
+                return 301 http://showbizdaily.net.s3.amazonaws.com/wp-$1/$2;
+        }
+
         location / {
                 try_files $uri $uri/ /index.php?q=$uri&$args;
         }
