@@ -1,14 +1,11 @@
 server {
         listen   8080;
 
-        root /var/www/elmundodigital;
+        root /var/www/geekshut;
         index index.php index.html index.htm;
 
-        server_name elmundodigital.localhost www.elmundodigital.net elmundodigital.net elmundodigital.*;
+        server_name *.geekshut.com geekshut.com *.amazonaws.com;
 
-        location ~ /wp-(content|includes)/(.+)$ {
-                return 301 http://elmundodigital.net.s3.amazonaws.com/wp-$1/$2;
-        }
 
         location / {
                 try_files $uri $uri/ /index.php?q=$uri&$args;
