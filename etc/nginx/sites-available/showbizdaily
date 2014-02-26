@@ -12,15 +12,15 @@ server {
     www.showbizdaily.net 
     showbizdaily.net;
 
-  location ~ /wp-includes/(.+)$ {
-    return 301 
-      http://showbizdaily.net.s3.amazonaws.com/wp-includes/$1;
-  }
+  #location ~ /wp-includes/(.+)$ {
+  #  return 301 
+  #    http://showbizdaily.net.s3.amazonaws.com/wp-includes/$1;
+  #}
   
-  location ~ /wp-content/uploads/(.+)$ {
-    return 301 
-      http://showbizdaily.net.s3.amazonaws.com/wp-content/uploads/$1;
-  }  
+  #location ~ /wp-content/uploads/(.+)$ {
+  #  return 301 
+  #    http://showbizdaily.net.s3.amazonaws.com/wp-content/uploads/$1;
+  #}  
 
   
   # process error directives and location

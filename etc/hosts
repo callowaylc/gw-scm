@@ -11,7 +11,7 @@
 54.197.235.202 database
 54.197.241.173 web0
 54.197.241.252 web1
-
+23.22.143.115  store
 
 # The following lines are desirable for IPv6 capable hosts
 ::1 ip6-localhost ip6-loopback
