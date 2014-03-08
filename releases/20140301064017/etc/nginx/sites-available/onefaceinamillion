@@ -1,0 +1,52 @@
+server {
+  listen   8080;
+
+  # define root and index
+  root  /var/www/geekshut;
+  index index.php index.html index.htm;
+
+  # define host name by which this server block
+  # will respond
+  server_name 
+    geekshut.localhost 
+    www.geekshut.com 
+    geekshut.com;
+
+  port_in_redirect off;
+
+  #location ~ /wp-includes/(.+)$ {
+  #  return 301 
+  #    http://geekshut.com.s3.amazonaws.com/wp-includes/$1;
+  #}
+  
+  #location ~ /wp-content/uploads/(.+)$ {
+  #  return 301 
+  #    http://geekshut.com.s3.amazonaws.com/wp-content/uploads/$1;
+  #}  
+
+  # need to increase from default 1m for pushing
+  # theme files for wordpress
+  client_max_body_size 100m;
+
+  
+  # process error directives and location
+  error_log  /var/log/nginx/geekshut.error.log;
+  error_page 404 /404.html;
+  error_page 500 502 503 504 /50x.html;
+
+  location = /50x.html {
+    root /usr/share/nginx/www;
+  }
+
+  # try our static assets and available files
+  try_files $uri $uri/ /index.php?q=$uri&$args;   
+
+  # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+  location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_pass  unix:/var/run/php5-fpm.sock;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include       fastcgi_params;        
+  }
+}
