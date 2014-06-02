@@ -2,7 +2,7 @@ import std;
 
 # Include the file with the host definitions in it (we'll call nzpost_extract_sitevars from it soon)
 # include "nmr.store.vcl";
- 
+
 # Separate backends to allow for ratelimiting if required in future. Nginx still decides how to route the request.
 backend default {
 	.host = "localhost";
@@ -192,8 +192,8 @@ sub vcl_hash {
 # Called after the backend request has arrived, here we override TTLs, detect ESIs, and add some headers for later.
 sub vcl_fetch {
 
-  set beresp.http.X-CACHE-ON = req.http.host + req.url;
-  set beresp.http.X-SERVER-IP = server.ip;
+  set beresp.http.X-CACHE-ON  = req.http.host + req.url;
+  set beresp.http.X-SERVER-ID = server.hostname;
 
   # Read the X-VARNISH-TTL header from the backend (if present) and use it to set the Varnish TTL only
   # See http://open.blogs.nytimes.com/tag/varnish/
