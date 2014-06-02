@@ -178,20 +178,22 @@ sub vcl_recv {
 # Our hash is kept simple - just the host, port and path, plus the miss reason if we're sure we don't
 # want the current request to meddle with the already cached version.
 # We use server-provided Vary headers combined with X-Varnish-Client-* headers for cache variations rather than hashes.
-#sub vcl_hash {
+sub vcl_hash {
 
   # Default URL and host hash
-  #hash_data(req.http.host);
-  #hash_data(req.url);
+  hash_data(req.http.host);
+  hash_data(req.url);
+  hash_data(req.http.x-forwarded-scheme);
 
-  #return (hash);
+  return (hash);
 
-#}
+}
  
 # Called after the backend request has arrived, here we override TTLs, detect ESIs, and add some headers for later.
 sub vcl_fetch {
 
   set beresp.http.X-CACHE-ON = req.http.host + req.url;
+  set beresp.http.X-SERVER-IP = server.ip;
 
   # Read the X-VARNISH-TTL header from the backend (if present) and use it to set the Varnish TTL only
   # See http://open.blogs.nytimes.com/tag/varnish/
