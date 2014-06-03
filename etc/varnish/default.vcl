@@ -135,6 +135,11 @@ sub vcl_recv {
     set req.http.X-Varnish-Force-Pass = 1;
     set req.http.X-Force-Miss-Reason = "http-post";
   }
+
+  # Always cache the following file types for all users.
+  if (req.url ~ "(?i)\.(png|gif|jpeg|jpg|ico|swf|css|js|html|htm)(\?[a-z0-9]+)?$") {
+    unset req.http.Cookie;
+  }
  
   # If the user has cookies, we will look for some flags of interest in them
   if (req.http.Cookie) {
@@ -198,7 +203,7 @@ sub vcl_fetch {
   # Read the X-VARNISH-TTL header from the backend (if present) and use it to set the Varnish TTL only
   # See http://open.blogs.nytimes.com/tag/varnish/
   if (beresp.http.X-VARNISH-TTL) {
-    set beresp.ttl = std.duration(beresp.http.X-VARNISH-TTL, 5m);
+    set beresp.ttl = std.duration(beresp.http.X-VARNISH-TTL, 30m);
   }
  
   # Check for errors we'd like to catch locally (you may want to disable this on dev)
@@ -256,10 +261,10 @@ sub vcl_fetch {
   # Static files have fixed cache lifetimes in Varnish (not too long, don't want to clog ourselves up)
   # This is mostly to hold gzip'd css/js in cache to avoid having to zip it multiple times.
   if (req.url ~ "\.(jpe?g|gif|png)(\?.*)?$") {
-    set beresp.ttl = 60s;
+    set beresp.ttl = 6h;
   }
   else if (req.url ~ "\.(css|js)(\?.*)?$") {
-    set beresp.ttl = 1h;
+    set beresp.ttl = 6h;
   }
  
   # 200 requests are cached as per the server's advice
@@ -330,7 +335,7 @@ sub vcl_fetch {
   else if (beresp.ttl <= 0s) {
     # Normal uncacheable page - cache that it's uncacheable to allow parallel requests for the next 2 minutes
     #std.log("Normal uncacheable -> hit_for_pass");
-    set beresp.ttl = 120s;
+    set beresp.ttl = 900s;
     return (hit_for_pass);
   }
   else {

@@ -5,7 +5,7 @@
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
 #role :app, %w{deploy@example.com}
-role :web, %w{ ubuntu@web0 ubuntu@web1 }
+role :web, %w{ ubuntu@web0 ubuntu@web1 ubuntu@web2 }
 #role :db,  %w{deploy@example.com}
 
 # Extended Server Syntax

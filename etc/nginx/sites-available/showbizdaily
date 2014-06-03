@@ -31,9 +31,15 @@ server {
   location = /50x.html {
     root /usr/share/nginx/www;
   }
+#set the expires for the static content-this be honoured by varnish proxy.
+location ~*  \.(jpg|jpeg|png|gif|ico|css|js)$ {
+   expires 6h;
+}
 
   # try our static assets and available files
   try_files $uri $uri/ /index.php?q=$uri&$args;   
+#for all contents set a expiry of 15 mins to increase the hit ratio-do not set it very high if you want a highly dynamic site.
+expires 15m;
 
   # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
   location ~ \.php$ {
