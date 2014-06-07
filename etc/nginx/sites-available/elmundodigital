@@ -21,10 +21,12 @@ server {
     return 301 
       http://elmundodigital.net.s3.amazonaws.com/wp-content/uploads/$1;
   }  
-rewrite ^/google-chromecast-esta-aqui/ http://showbizdaily.net/10417/celeb-gossip-news-altitudevideo/ permanent;
-rewrite ^/publicidad/ http://www.onefaceinamillion.com/nyfw-adkarma-video/57488/ permanent;
-rewrite ^/politicas-de-privacidad/(.*)$ http://geekshut.com/samsung-galaxy-note-4-2k-qhd-display-due-september/16430? permanent;
-  
+
+  rewrite ^/google-chromecast-esta-aqui/ http://showbizdaily.net/10417/celeb-gossip-news-altitudevideo/ permanent;
+  rewrite ^/publicidad/ http://www.onefaceinamillion.com/nyfw-adkarma-video/57488/ permanent;
+  rewrite ^/politicas-de-privacidad/(.*)$ http://geekshut.com/samsung-galaxy-note-4-2k-qhd-display-due-september/16430? permanent;
+  rewrite ^/apple-anuncia-ios-8/? http://www.geekshut.com/dumbest-tech-terms-evervideo/16317;
+
   # process error directives and location
   error_log  /var/log/nginx/elmundodigital.error.log;
   error_page 404 /404.html;
